@@ -1,10 +1,10 @@
 /****Form****/
 
-#form {
+.form {
 	padding-top: 15px;
 }
 
-#form input {
+.form input {
 	width: 100%;
 	height: 31px;
 	float:left;
@@ -20,7 +20,7 @@
 }
 
 
-#form textarea {
+.form textarea {
 	width: 100%;
 	height: 221px;
 	background: #fefefe;
@@ -39,13 +39,13 @@
     padding: 11px 18px 7px;
 }
 
-#form  .message ._placeholder {
+.form  .message ._placeholder {
 	padding-top: 22px;
 }
 
 
 
-#form ._placeholder {
+.form ._placeholder {
 	transition: 0.5s ease;
 	-o-transition: 0.5s ease;
 	-webkit-transition: 0.5s ease;
@@ -67,19 +67,19 @@
 	display: block;
 }
 
-#form ._placeholder.hidden {
+.form ._placeholder.hidden {
 	display: none;
 }
 
-#form ._placeholder.focused {
+.form ._placeholder.focused {
 	opacity: 0.3;
 }
 
 
-#form .message ._placeholder {
+.form .message ._placeholder {
 	height: 100% !important;
 }
-#form label {
+.form label {
 	position:relative;
 	display: block;
 	min-height: 40px;
@@ -87,13 +87,28 @@
 	width: 170px;
 }
 
+.login-form label, #register-form label {
+	width: 51% !important;
+}
 
-#form label+label {
+.login-form label + label, #register-form label + label {
+	margin-left: 0 !important;
+}
+
+.login-form input, #register-form input {
+	height: auto !important;
+}
+
+.login-form .btns, #register-form .btns {
+    width: 51%;
+}
+
+.form label+label {
 	margin-left: 30px;
 }
 
 
-#form label.message {
+.form label.message {
 	width: 100%;
 	position: relative;
 	margin-left: 0;
@@ -102,7 +117,7 @@
 
 
 
-#form .error-message, #form .empty-message {
+.form .error-message, .form .empty-message {
 	color: #E02A05;
 	font-size: 11px;
 	line-height:14px;
@@ -118,14 +133,14 @@
 	-webkit-transition: 0.5s ease;
 }
 
-#form .message .error-message, #form .message .empty-message {
+.form .message .error-message, .form .message .empty-message {
 	bottom: -16px;
 }
 
 
 
 
-#form .invalid .error-message, #form .empty .empty-message {
+.form .invalid .error-message, .form .empty .empty-message {
 	opacity: 1;
 }
 
@@ -136,7 +151,7 @@
 	padding-top: 28px;
 }
 
-.btns a.btn {
+.btns a.btn, .btns .btn {
 	margin: 0;
 	padding-left: 0;
 	padding-right: 0;
@@ -146,7 +161,7 @@
 	
 }
 
-.btns a.btn+a.btn {
+.btns a.btn+a.btn, .btns .btn+input.btn {
 	margin-left: 8px;
 }
 
@@ -166,15 +181,11 @@
 	line-height: 0;
 }
 
-#form .success-message {
+.form .success-message {
 	display: none;
 	opacity: 0;
-	position: absolute;
-	background: #fefefe;
-    border: 1px solid #f0efef;
 	width: 100%;
 	height: 40px;
-	text-align: center;
 	padding: 9px 10px;
 	z-index: 999;
 	box-sizing: border-box;
@@ -185,9 +196,16 @@
 	-webkit-transition: 0.5s ease;
 }
 
-#form.success .success-message {
-	display: block;
-	opacity: 1;
+.form.success .success-message {
+    display: block;
+    opacity: 1;
+    color: green;
+}
+
+.form.error .success-message {
+    display: block;
+    opacity: 1;
+    color: red;
 }
 
 .success_wrapper {
@@ -196,22 +214,22 @@
 
 @media only screen and (max-width: 995px) {
 
-#form {
+.form {
 }
 
 
-#form label {
+.form label {
 	float: none !important;	
 	width: 100%;
 	margin-left: 0 !important;
 }
 
-#form input {
+.form input {
 	margin-bottom: 10px;
 }
 
 
-#form .success-message {
+.form .success-message {
 	width: 100%;
 }
 
@@ -219,7 +237,7 @@
 	padding-right: 0;
 }
 
-#form label.email {
+.form label.email {
 	width: 100%;
 	margin: 0;
 }
@@ -245,18 +263,26 @@
 		padding-bottom: 0;  
   }
   
-  #form textarea {
+  .form textarea {
 		height: 300px !important; 
   }
 
-   #form {
+   .form {
  	padding-right: 0;
  }
   
 }
 @media only screen and (max-width: 479px) {
 
-  #form textarea {
+  .form textarea {
 		height: 200px !important;  
   }
+}
+
+#login_form .btn, #register_form .btn {
+    background-color: #fdc903 !important;
+    color: #fff !important;
+    width: auto !important;
+    float: right;
+    cursor: pointer;
 }

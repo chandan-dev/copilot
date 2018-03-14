@@ -654,11 +654,11 @@ footer {
     width: auto;
 }
 
- .map figure,  .map figure iframe,  #form input,  #form textarea,  #form .success {
+ .map figure,  .map figure iframe,  .form input,  .form textarea,  .form .success {
  width: 100% !important;
  float: none !important;
 }
- #form .success {
+ .form .success {
  -moz-box-sizing: border-box;
  -webkit-box-sizing: border-box;
  -o-box-sizing: border-box;

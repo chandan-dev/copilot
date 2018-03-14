@@ -1,0 +1,58 @@
+
+CREATE TABLE `users` (
+ `user_id` int(11) NOT NULL AUTO_INCREMENT,
+ `email` varchar(100) NOT NULL,
+ `password` varchar(50) NOT NULL,
+ `mobile_number` varchar(13) NOT NULL,
+ `user_type` varchar(2) NOT NULL DEFAULT '1' COMMENT '1=Passenger, 2=Driver',
+ `otp` varchar(10) DEFAULT NULL,
+ `otp_sent_time` datetime DEFAULT NULL,
+ PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `transporter_profile` (
+ `user_id` int(11) NOT NULL,
+ `email` varchar(100) NOT NULL,
+ `mobile_number` varchar(13) NOT NULL,
+ `first_name` varchar(30) NOT NULL,
+ `last_name` varchar(20) NOT NULL,
+ `secondary_email` varchar(100) DEFAULT NULL,
+ `secondary_mobile_number` varchar(13) DEFAULT NULL,
+ `vehicle_reg_no` varchar(10) DEFAULT NULL,
+ `vehicle_model` varchar(50) DEFAULT NULL,
+ `vehicle_color` varchar(20) DEFAULT NULL,
+ `vehicle_photo` varchar(20) DEFAULT NULL,
+ `driver_name` varchar(50) DEFAULT NULL,
+ `driver_mobile` varchar(13) DEFAULT NULL,
+ `driver_email` varchar(100) DEFAULT NULL,
+ `driver_age` int(11) DEFAULT NULL,
+ `driver_gender` tinyint(4) DEFAULT '1' COMMENT '1=Male, 2=Female',
+ `driving_license_no` varchar(20) DEFAULT NULL,
+ `driver_aadhar_no` varchar(30) DEFAULT NULL,
+ `driving_license_document` varchar(20) DEFAULT NULL,
+ `aadhar_document` varchar(20) DEFAULT NULL,
+ `is_active` tinyint(1) NOT NULL DEFAULT '1',
+ `created_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `passenger_profile` (
+ `user_id` int(11) NOT NULL,
+ `email` varchar(100) NOT NULL,
+ `mobile_number` varchar(13) NOT NULL,
+ `first_name` varchar(30) NOT NULL,
+ `last_name` varchar(20) NOT NULL,
+ `secondary_email` varchar(100) DEFAULT NULL,
+ `secondary_mobile_number` varchar(13) DEFAULT NULL,
+ `age` int(11) DEFAULT NULL,
+ `gender` tinyint(4) DEFAULT '1' COMMENT '1=Male, 2=Female',
+ `aadhar_number` varchar(30) DEFAULT NULL,
+ `sos_full_name` varchar(50) DEFAULT NULL,
+ `sos_mobile_number` varchar(13) DEFAULT NULL,
+ `sos_email` varchar(100) DEFAULT NULL,
+ `sos_relationship` tinyint(4) DEFAULT '1' COMMENT '1=Father, 2=Mother, 3=Brother, 4=Sister, 5=Husband, 6=Wife, 7=Other',
+ `aadhar_document` varchar(20) DEFAULT NULL,
+ `sos_aadhar_document` varchar(20) DEFAULT NULL,
+ `is_active` tinyint(1) NOT NULL DEFAULT '1',
+ `created_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

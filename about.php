@@ -41,11 +41,13 @@
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li><a href="index.html">Home</a></li>
-									<li class="current"><a href="index-1.html">About</a></li>
-									<li><a href="index-2.html">Cars</a></li>
-									<li><a href="index-3.html">Services</a></li>
-									<li><a href="index-4.html">Contacts</a></li>
+									<li><a href="">Home</a></li>
+									<li class="current"><a href="about.php">About</a></li>
+									<li><a href="cars.php">Cars</a></li>
+									<li><a href="services.php">Services</a></li>
+									<li><a href="contact.php">Contacts</a></li>
+									<li><a href="login.php">Sign In</a></li>
+									<li><a href="register.php">Register</a></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>

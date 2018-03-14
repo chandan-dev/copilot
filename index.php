@@ -65,7 +65,7 @@
 									<li><a href="cars.php">Cars</a></li>
 									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
-									<li><a href="login.php">Login</a></li>
+									<li><a href="login.php">Sign In</a></li>
 									<li><a href="register.php">Register</a></li>
 								</ul>
 							</nav>

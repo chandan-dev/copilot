@@ -1,7 +1,50 @@
+<?php
+
+include('db.php');
+
+// if the session not yet started
+if(empty($_SESSION)) {
+    session_start();
+}
+
+// if the form not yet submitted
+if(isset($_SESSION['user_id'])) {
+    header('Location: profile.php');
+    exit;
+}
+
+if (!empty($_POST)) {
+    $successMsg = '';
+    $successClass = '';
+
+    $firstName = $_POST['firstname'];
+    $lastName = $_POST['lastname'];
+    $email = $_POST['email'];
+    $mobileNumber = $_POST['phone'];
+    $password = $_POST['password'];
+    $userType = 1;
+
+    $sql = 'INSERT INTO users (email, password, mobile_number, user_type)
+            VALUES ("' . $email . '", "' . $password . '", "' . $mobileNumber . '", "' . $userType . '")';
+    if ($conn->query($sql) == TRUE) {
+        $userId = $conn->insert_id;
+        $currentDate = date('Y-m-d H:i:s');
+
+        $sql = 'INSERT INTO passenger_profile (user_id, email, mobile_number, first_name, last_name, created_date)
+            VALUES (' . $userId . ', "' . $email . '", "' . $mobileNumber . '", "' . $firstName . '", "' . $lastName . '", "' . $currentDate . '")';
+        if ($conn->query($sql) == TRUE) {
+            $successMsg = 'Registration is successful. <a href="passenger-login.php">Click here</a> to Login.';
+            $successClass = 'success';
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Contacts</title>
+		<title>Passenger Sign Up</title>
 		<meta charset="utf-8">
 		<meta name = "format-detection" content = "telephone=no" />
 		<link rel="icon" href="images/favicon.ico">
@@ -38,7 +81,7 @@
 		<div class="main">
 <!--==============================header=================================-->
 			<header>
-				<div class="menu_block ">
+				<div class="menu_block">
 					<div class="container_12">
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
@@ -47,9 +90,9 @@
 									<li><a href="about.php">About</a></li>
 									<li><a href="cars.php">Cars</a></li>
 									<li><a href="services.php">Services</a></li>
-									<li class="current"><a href="contact.php">Contacts</a></li>
+									<li><a href="contact.php">Contacts</a></li>
 									<li><a href="login.php">Sign In</a></li>
-									<li><a href="register.php">Register</a></li>
+									<li class="current"><a href="register.php">Register</a></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -60,7 +103,7 @@
 				<div class="container_12">
 					<div class="grid_12">
 						<h1>
-							<a href="index.html">
+							<a href="">
 								<img src="images/logo.png" alt="Your Happy Family">
 							</a>
 						</h1>
@@ -71,68 +114,46 @@
 <!--==============================Content=================================-->
 			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 07, 2014!</div>
 				<div class="container_12">
-					<div class="grid_12">
-						<h3>Find Us</h3>
-						<div class="map">
-							<figure>
-								<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24214.807650104907!2d-73.94846048422478!3d40.65521573400813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1395650655094" style="border:0"></iframe>
-							</figure>
+					<h3>Passenger Sign Up</h3>
+
+					<form id="register-form" class="login-form form">
+						<div class="success_wrapper">
+							<div class="success-message">Contact form submitted</div>
 						</div>
-					</div>
-					<div class="grid_5">
-						<h3>Contact Info</h3>
-						<div class="map">
-							<div class="text1 color2">Lorem ipsum dolor sit amet, consecteturpiscinger elit um dolor sit amet, consecteturpiscing.</div>
-							<p>Don’t forget, 24/7 support is available for TemplateMonster’s <span class="color1"><a href="http://www.templatemonster.com/website-templates.php" rel="nofollow">premium themes</a></span> only. Free ones lack this privilege.</p>
-							<p>Use <span class="color1"><a href="http://www.templatetuning.com/" rel="nofollow">Template Tuning</a></span> services if you need any help in customization of your freebie.</p>
-							<address>
-								<dl>
-									<dt>The Company Name Inc. <br>
-										9870 St Vincent Place,<br>
-										Glasgow, DC 45 Fr 45.
-									</dt>
-									<dd><span>Telephone:</span> +1 800 603 6035</dd>
-									<dd><span>FAX:</span> +1 800 889 9898</dd>
-									<dd>E-mail: <a href="#" class="color1">mail@demolink.org</a></dd>
-								</dl>
-							</address>
+						<label class="firstname">
+							<input type="text" placeholder="First Name:" data-constraints="@Required" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="lastname">
+							<input type="text" placeholder="Last Name:" data-constraints="@Required" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="email">
+							<input type="text" placeholder="E-mail:" data-constraints="@Required" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="phone">
+							<input type="text" placeholder="Phone Number:" data-constraints="@Required" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+                        <label class="city">
+                            <input type="text" placeholder="City:" data-constraints="@Required" />
+                            <span class="empty-message">*This field is required.</span>
+                        </label>
+						<label class="password">
+							<input type="password" placeholder="Password:" data-constraints="@Required @Length(min=8,max=20)"/>
+							<span class="empty-message">*This field is required.</span>
+							<span class="error-message">*This is not a valid password.</span>
+						</label>
+						<div>
+							<div class="clear"></div>
+							<div class="btns">
+								<a href="#" data-type="reset" class="btn">Clear</a>
+								<a href="#" data-type="submit" class="btn">Register</a>
+							</div>
 						</div>
-					</div>
-					<div class="grid_6 prefix_1">
-						<h3>Contact Form</h3>
-						<form id="form">
-							<div class="success_wrapper">
-								<div class="success-message">Contact form submitted</div>
-							</div>
-							<label class="name">
-								<input type="text" placeholder="Name:" data-constraints="@Required @JustLetters" />
-								<span class="empty-message">*This field is required.</span>
-								<span class="error-message">*This is not a valid name.</span>
-							</label>
-							<label class="email">
-								<input type="text" placeholder="E-mail:" data-constraints="@Required @Email" />
-								<span class="empty-message">*This field is required.</span>
-								<span class="error-message">*This is not a valid email.</span>
-							</label>
-							<label class="phone">
-								<input type="text" placeholder="Phone:" data-constraints="@Required @JustNumbers"/>
-								<span class="empty-message">*This field is required.</span>
-								<span class="error-message">*This is not a valid phone.</span>
-							</label>
-							<label class="message">
-								<textarea placeholder="Message:" data-constraints='@Required @Length(min=20,max=999999)'></textarea>
-								<span class="empty-message">*This field is required.</span>
-								<span class="error-message">*The message is too short.</span>
-							</label>
-							<div>
-								<div class="clear"></div>
-								<div class="btns">
-									<a href="#" data-type="submit" class="btn">Send</a>
-									<a href="#" data-type="reset" class="btn">Clear</a>
-								</div>
-							</div>
-						</form>
-					</div>
+					</form>
+
 					<div class="clear"></div>
 				</div>
 			</div>
