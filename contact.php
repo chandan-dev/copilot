@@ -54,12 +54,14 @@ if(empty($_SESSION)) {
 								<ul class="sf-menu">
 									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
+                                    <li><a href="services.php">Services</a></li>
 									<li class="current"><a href="contact.php">Contacts</a></li>
 									<?php
 
 									if(isset($_SESSION['user_id'])) {
 										if ($_SESSION['user_type'] == 1) {
 											echo '<li><a href="book-a-ride.php">Book A Ride</a></li>';
+                                            echo '<li><a href="passenger-profile.php">Profile</a></li>';
 										} else {
 											echo '<li><a href="profile.php">Profile</a></li>';
 										}
@@ -67,7 +69,7 @@ if(empty($_SESSION)) {
 									} else {
 										?>
 
-										<li><a href="login.php">Login</a></li>
+										<li><a href="login.php">Sign In</a></li>
 										<li><a href="regstn.php">Register</a></li>
 
 										<?php

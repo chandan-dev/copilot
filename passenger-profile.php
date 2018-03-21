@@ -17,23 +17,18 @@ $email = '';
 $mobileNumber = '';
 $secondaryEmail = '';
 $secondaryPhone = '';
+$age = '';
+$gender = '';
+$aadharNo = '';
+$aadharDocument = '';
 
-$vehicleRegdNo = '';
-$vehicleModel = '';
-$vehicleColor = '';
-$vehiclePhoto = '';
+$sosFullName = '';
+$sosMobileNo = '';
+$sosEmail = '';
+$sosAadharDocument = '';
+$sosRelationship = '';
 
-$driverName = '';
-$driverMobile = '';
-$driverEmail = '';
-$driverAge = '';
-$driverGender = '';
-$drivingLicenseNo = '';
-$drivingAadharNo = '';
-$drivingLicense = '';
-$driverAadhar = '';
-
-$sql = 'SELECT * FROM transporter_profile WHERE user_id = ' . $userId;
+$sql = 'SELECT * FROM passenger_profile WHERE user_id = ' . $userId;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -45,21 +40,16 @@ if ($result->num_rows > 0) {
         $mobileNumber = $row['mobile_number'];
         $secondaryEmail = $row['secondary_email'];
         $secondaryPhone = $row['secondary_mobile_number'];
+        $age = $row['age'];
+        $gender = $row['gender'];
+        $aadharNo = $row['aadhar_number'];
+        $aadharDocument = $row['aadhar_document'];
 
-        $vehicleRegdNo = $row['vehicle_reg_no'];
-        $vehicleModel = $row['vehicle_model'];
-        $vehicleColor = $row['vehicle_color'];
-        $vehiclePhoto = fileUpload('vehicle_photo');
-
-        $driverName = $row['driver_name'];
-        $driverMobile = $row['driver_mobile'];
-        $driverEmail = $row['driver_email'];
-        $driverAge = $row['driver_age'];
-        $driverGender = $row['driver_gender'];
-        $drivingLicenseNo = $row['driving_license_no'];
-        $drivingAadharNo = $row['driver_aadhar_no'];
-        $drivingLicense = $row['driving_license_document'];
-        $driverAadhar = $row['aadhar_document'];
+        $sosFullName = $row['sos_full_name'];
+        $sosMobileNo = $row['sos_mobile_number'];
+        $sosEmail = $row['sos_email'];
+        $sosAadharDocument = $row['sos_aadhar_document'];
+        $sosRelationship = $row['sos_relationship'];
     }
 }
 
@@ -70,30 +60,23 @@ if (!empty($_POST)) {
     $mobileNumber = $_POST['phone'];
     $secondaryEmail = $_POST['secondaryemail'];
     $secondaryPhone = $_POST['secondaryphone'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
+    $aadharNo = $_POST['aadharnumber'];
+    $aadharDocument = fileUpload('aadhardocument');
 
-    $vehicleRegdNo = $_POST['vehicleregdno'];
-    $vehicleModel = $_POST['vehiclemodel'];
-    $vehicleColor = $_POST['vehiclecolor'];
-    $vehiclePhoto = $_POST['vehiclephoto'];
+    $sosFullName = $_POST['sosfullname'];
+    $sosMobileNo = $_POST['sosmobilenumber'];
+    $sosEmail = $_POST['sosemail'];
+    $sosAadharDocument = fileUpload('sosaadhardocument');
+    $sosRelationship = $_POST['relationship'];
 
-    $driverName = $_POST['drivername'];
-    $driverMobile = $_POST['drivermobile'];
-    $driverEmail = $_POST['driveremail'];
-    $driverAge = $_POST['driverage'];
-    $driverGender = $_POST['drivergender'];
-    $drivingLicenseNo = $_POST['drivinglicenseno'];
-    $drivingAadharNo = $_POST['driveraadharno'];
-
-    $drivingLicense = fileUpload('drivinglicense');
-    $driverAadhar = fileUpload('driveraadhar');
-
-    $sql = 'UPDATE transporter_profile SET email = "' . $email . '",  mobile_number = "' . $mobileNumber . '", first_name = "' . $firstName . '",
+    $sql = 'UPDATE passenger_profile SET email = "' . $email . '",  mobile_number = "' . $mobileNumber . '", first_name = "' . $firstName . '",
             last_name = "' . $lastName . '", secondary_email = "' . $secondaryEmail . '", secondary_mobile_number = "' . $secondaryPhone . '",
-            vehicle_reg_no = "' . $vehicleRegdNo . '", vehicle_model = "' . $vehicleModel . '", vehicle_color = "' . $vehicleColor . '",
-            vehicle_photo = "' . $vehiclePhoto . '", driver_name = "' . $driverName . '", driver_mobile = "' . $driverMobile . '",
-            driver_email = "' . $driverEmail . '", driver_age = "' . $driverAge . '", driver_gender = "' . $driverGender . '",
-            driving_license_no = "' . $drivingLicenseNo . '", driver_aadhar_no = "' . $drivingAadharNo . '",
-            driving_license_document = "' . $drivingLicense . '", aadhar_document = "' . $driverAadhar . '" WHERE user_id = ' . $userId;
+            age = "' . $age . '", gender = "' . $gender . '", aadhar_number = "' . $aadharNo . '",
+            sos_full_name = "' . $sosFullName . '", sos_mobile_number = "' . $sosMobileNo . '", sos_email = "' . $sosEmail . '",
+            sos_relationship = "' . $sosRelationship . '", aadhar_document = "' . $aadharDocument . '",
+            sos_aadhar_document = "' . $sosAadharDocument . '" WHERE user_id = ' . $userId;
 
     if ($conn->query($sql) == TRUE) {
         $successClass = 'success';
@@ -148,10 +131,28 @@ if (!empty($_POST)) {
 								<ul class="sf-menu">
 									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
-                                    <li><a href="services.php">Services</a></li>
+									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
-									<li class="current"><a href="profile.php">Profile</a></li>
-									<li><a href="logout.php">Logout</a></li>
+									<?php
+
+									if(isset($_SESSION['user_id'])) {
+										if ($_SESSION['user_type'] == 1) {
+											echo '<li><a href="book-a-ride.php">Book A Ride</a></li>';
+											echo '<li class="current"><a href="passenger-profile.php">Profile</a></li>';
+										} else {
+											echo '<li><a href="profile.php">Profile</a></li>';
+										}
+										echo '<li><a href="logout.php">Logout</a></li>';
+									} else {
+										?>
+
+										<li><a href="login.php">Sign In</a></li>
+										<li><a href="regstn.php">Register</a></li>
+
+										<?php
+									}
+
+									?>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -175,7 +176,7 @@ if (!empty($_POST)) {
 				<div class="container_12">
 					<h3>Profile Details</h3>
 
-					<form id="register_form" class="login-form form <?php echo $successClass; ?>" method="post" action="profile.php"
+					<form id="register_form" class="login-form form <?php echo $successClass; ?>" method="post" action="passenger-profile.php"
                         enctype="multipart/form-data">
 						<div class="success_wrapper">
 							<div class="success-message">Profile data saved successfully.</div>
@@ -210,82 +211,70 @@ if (!empty($_POST)) {
                                 name="secondaryphone" value="<?php echo $secondaryPhone; ?>" />
 							<span class="empty-message">*This field is required.</span>
 						</label>
-
-                        <div class="clear"></div>
-
-						<h3>Vehicle Details</h3>
-
-						<label class="vehicle-regd-no">
-							<input type="text" placeholder="Regd Number:" data-constraints="@Required"
-                                name="vehicleregdno" value="<?php echo $vehicleRegdNo; ?>" />
+						<label class="age">
+							<input type="text" placeholder="Age:" data-constraints="@Required"
+								   name="age" value="<?php echo $age; ?>" />
 							<span class="empty-message">*This field is required.</span>
 						</label>
-						<label class="vehicle-model">
-							<input type="text" placeholder="Model:" data-constraints="@Required"
-                                name="vehiclemodel" value="<?php echo $vehicleModel; ?>" />
-							<span class="empty-message">*This field is required.</span>
-						</label>
-						<label class="vehicle-color">
-							<input type="text" placeholder="Color:" data-constraints="@Required"
-                                name="vehiclecolor" value="<?php echo $vehicleColor; ?>" />
-							<span class="empty-message">*This field is required.</span>
-						</label>
-						<label class="vehicle-photo1">
-							<input type="file" placeholder="Upload Photo:" data-constraints="@Required"
-                                name="vehiclephoto" value="<?php echo $vehiclePhoto; ?>" />
-							<span class="empty-message">*This field is required.</span>
-						</label>
-
-                        <div class="clear"></div>
-
-                        <h3>Driver Details</h3>
-
-						<label class="driver-name">
-							<input type="text" placeholder="Driver Full Name:" data-constraints="@Required"
-                                name="drivername" value="<?php echo $driverName; ?>" />
-							<span class="empty-message">*This field is required.</span>
-						</label>
-                        <label class="driver-mobile">
-                            <input type="text" placeholder="Driver Mobile:" data-constraints="@Required"
-                                   name="drivermobile" value="<?php echo $driverMobile; ?>" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
-                        <label class="driver-email">
-                            <input type="text" placeholder="Driver Email:"
-                                   name="driveremail" value="<?php echo $driverEmail; ?>" />
-                        </label>
-                        <label class="driver-age">
-                            <input type="text" placeholder="Driver Age:" data-constraints="@Required"
-                                   name="driverage" value="<?php echo $driverAge; ?>" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
-                        <label class="driver-gender">
-                            <select style="width: 100%; height: 35px; margin-bottom: 7px;" name="drivergender">
-                                <option value="0">Select driver gender</option>
-                                <option value="1" <?php if ($driverGender == 1) echo 'selected'; ?>>Male</option>
-                                <option value="2" <?php if ($driverGender == 2) echo 'selected'; ?>>Female</option>
+						<label class="gender">
+                            <select style="width: 100%; height: 35px; margin-bottom: 7px;" name="gender">
+                                <option value="0">Select gender</option>
+                                <option value="1" <?php if ($gender == 1) echo 'selected'; ?>>Male</option>
+                                <option value="2" <?php if ($gender == 2) echo 'selected'; ?>>Female</option>
                             </select>
-                        </label>
-                        <label class="driving-license-no">
-                            <input type="text" placeholder="Driving License No:" data-constraints="@Required"
-                                   name="drivinglicenseno" value="<?php echo $drivingLicenseNo; ?>" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
-                        <label class="driver-aadhar-no">
-                            <input type="text" placeholder="Driver Aadhar No:" data-constraints="@Required"
-                                   name="driveraadharno" value="<?php echo $drivingAadharNo; ?>" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
-                        <label class="driving-license">
-                            <input type="file" placeholder="Driving License Document:" data-constraints="@Required"
-                                   name="drivinglicense" value="<?php echo $drivingLicense; ?>" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
-                        <label class="driver-aadhar">
-                            <input type="file" placeholder="Driver Aadhar Document:" data-constraints="@Required"
-                                   name="driveraadhar" value="<?php echo $driverAadhar; ?>" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
+
+							<input type="text" placeholder="Gender:" data-constraints="@Required"
+								   name="gender" value="<?php echo $gender; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="aadhar-number">
+                            <input type="text" placeholder="Aadhar No:" data-constraints="@Required"
+                                   name="aadharnumber" value="<?php echo $aadharNo; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="aadhar-document">
+							<input type="file" placeholder="Upload Document:" data-constraints="@Required"
+								   name="aadhardocument" value="<?php echo $aadharDocument; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+
+                        <div class="clear"></div>
+
+						<h3>SOS Details</h3>
+
+						<label class="sos-full-name">
+							<input type="text" placeholder="SOS Full Name:" data-constraints="@Required"
+                                name="sosfullname" value="<?php echo $sosFullName; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="sos-mobile-number">
+							<input type="text" placeholder="SOS Mobile Number:" data-constraints="@Required"
+                                name="sosmobilenumber" value="<?php echo $sosMobileNo; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="sos-email">
+							<input type="text" placeholder="SOS Email:" data-constraints="@Required"
+                                name="sosemail" value="<?php echo $sosEmail; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="sos-aadhar-document">
+							<input type="file" placeholder="Upload Document:" data-constraints="@Required"
+                                name="sosaadhardocument" value="<?php echo $sosAadharDocument; ?>" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
+						<label class="sos-relationship">
+							<select style="width: 100%; height: 35px;" name="relationship">
+								<option value="0">Select relationship with SOS</option>
+								<option value="1" <?php if ($sosRelationship == 1) echo 'selected'; ?>>Father</option>
+								<option value="2" <?php if ($sosRelationship == 2) echo 'selected'; ?>>Mother</option>
+								<option value="3" <?php if ($sosRelationship == 3) echo 'selected'; ?>>Brother</option>
+								<option value="4" <?php if ($sosRelationship == 4) echo 'selected'; ?>>Sister</option>
+								<option value="5" <?php if ($sosRelationship == 5) echo 'selected'; ?>>Husband</option>
+								<option value="6" <?php if ($sosRelationship == 6) echo 'selected'; ?>>Wife</option>
+								<option value="7" <?php if ($sosRelationship == 7) echo 'selected'; ?>>Other</option>
+							</select>
+							<span class="empty-message">*This field is required.</span>
+						</label>
 						<div>
 							<div class="clear"></div>
 							<div class="btns">

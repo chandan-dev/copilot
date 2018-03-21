@@ -88,6 +88,7 @@ if (!empty($_POST)) {
 								<ul class="sf-menu">
 									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
+									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
 									<li><a href="login.php">Sign In</a></li>
 									<li class="current"><a href="register.php">Register</a></li>

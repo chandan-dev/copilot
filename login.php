@@ -64,6 +64,7 @@ if(isset($_SESSION['user_id'])) {
 								<ul class="sf-menu">
 									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
+									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
 									<li class="current"><a href="login.php">Sign In</a></li>
 									<li><a href="register.php">Register</a></li>

@@ -1,5 +1,10 @@
 <?php
 
+// if the session not yet started
+if(empty($_SESSION)) {
+    session_start();
+}
+
 $result = []; $source = ''; $destination = '';
 if (isset($_POST) && !empty($_POST)) {
     include "client/Uber.php";
@@ -108,8 +113,18 @@ if (isset($_POST) && !empty($_POST)) {
 								<ul class="sf-menu">
 									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
+                                    <li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
 									<li class="current"><a href="book-a-ride.php">Book A Ride</a></li>
+
+                                    <?php
+
+                                    if ($_SESSION['user_type'] == 1) {
+                                        echo '<li><a href="passenger-profile.php">Profile</a></li>';
+                                    }
+
+                                    ?>
+
 									<li><a href="logout.php">Logout</a></li>
 								</ul>
 							</nav>
