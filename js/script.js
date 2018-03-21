@@ -50,3 +50,10 @@ var currentYear = (new Date).getFullYear();
   $(function(){
   $('.sf-menu').superfish({autoArrows: true})
 })
+
+function sendMail()
+{
+    $.post('mail.php', function(data) {
+        // do something
+    });
+}

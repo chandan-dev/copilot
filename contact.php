@@ -109,21 +109,22 @@ if(empty($_SESSION)) {
 					<div class="grid_5">
 						<h3>Contact Info</h3>
 						<div class="map">
-							<div class="text1 color2">Co-Pilot also provides individual contact numbers for its customers with the help of which customers can contact from anywhere. Customers can find the contact numbers from the website of this company easily and dial to this company to book the cab anytime.
-<br><br>Co-Pilot Customer Care Details: <br>
+							<div class="color2">Co-Pilot also provides individual contact number for its customers with the help of which customers can contact from anywhere. Customers can find the contact numbers from the website of this company easily and dial to this company to book the cab anytime.
+<br><br>
+                                <h3>Co-Pilot Customer Care</h3>
                   This company also provides customer care numbers for its customer care numbers using which they can call and solve their problems easily. The support team of this company work all the time and provide solutions for the customers.
 
  </div>
-							<p>Don’t forget, 24/7 support is available for passanger support <span class="color1"><a href="" rel="nofollow"></a></span></p>
+							<p>Don’t forget, 24/7 support is available for passenger.<span class="color1"><a href="" rel="nofollow"></a></span></p>
 							<p>TOLL-FREE: 1800156256<span class="color1"><a href="" rel="nofollow"></a></span></p>
 							<address>
 								<dl>
-									<dt>The Company Name Co-pilot pvt.ltd <br>
-										 Cuttack,Odisha,753001<br>
-										 1st floor IMIT,cuttack
+									<dt>The Company Name Co-Pilot pvt.ltd <br>
+										 Cuttack, Odisha, 753001<br>
+										 1st floor IMIT, Cuttack
 									</dt>
-									<dd><span>Mobile No.</span>7978254858 , 8658231166,7978615741 , 8249744031</dd>
-									<dd><span>FAX:</span>+ 9692116658</dd>
+									<dd><span>Mobile No.</span>7978254858, 8658231166, 7978615741, 8249744031</dd>
+									<dd><span>FAX:</span>+919692116658</dd>
 									<dd>E-mail: support@copilot.com<a href="#" class="color1"> </a></dd>
 								</dl>
 							</address>
@@ -131,7 +132,7 @@ if(empty($_SESSION)) {
 					</div>
 					<div class="grid_6 prefix_1">
 						<h3>Contact Form</h3>
-						<form id="form">
+						<form id="form" class="form">
 							<div class="success_wrapper">
 								<div class="success-message">Contact form submitted</div>
 							</div>
@@ -169,23 +170,23 @@ if(empty($_SESSION)) {
 			</div>
 		</div>
 <!--==============================footer=================================-->
-		<footer>
-			<div class="container_12">
-				<div class="grid_12">
-					<div class="f_phone"><span>Call Us:</span>7978254858</div>
-					<div class="socials">
-						<a href="#" class="fa fa-twitter"></a>
-						<a href="#" class="fa fa-facebook"></a>
-						<a href="#" class="fa fa-google-plus"></a>
-					</div>
-					<div class="copy">
-						<div class="st1">
-						<div class="brand">Co-<span class="color1">P</span>ilot </div>
-						<a href="#">Privacy Policy</a> </div> Website designed by copilot.com<a href="" rel="nofollow"></a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-		</footer>
+        <footer>
+            <div class="container_12">
+                <div class="grid_12">
+                    <div class="f_phone"><span>Call Us:</span> 7978254858</div>
+                    <div class="socials">
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-google-plus"></a>
+                    </div>
+                    <div class="copy">
+                        <div class="st1">
+                            <div class="brand">Co-<span class="color1">P</span>ilot </div>
+                            <a href="#">Privacy Policy</a> </div> Website designed by copilot.com <a href="" rel="nofollow"></a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </footer>
 	</body>
 </html>

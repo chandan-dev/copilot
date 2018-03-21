@@ -93,12 +93,12 @@ if(isset($_SESSION['user_id'])) {
 
 			<div class="grid_5">
 				<h3>
-					Driver
+                    Transport Provider
 				</h3>
 				<p>
 					Find everything you need to track your success on the road.
 				</p>
-				<a href="driver-register.php" data-type="submit" class="btn">DRIVER SIGN UP</a>
+				<a href="driver-register.php" data-type="submit" class="btn">TRANSPORT PROVIDER SIGN UP</a>
 			</div>
 
 			<div class="grid_6 prefix_1">
@@ -117,22 +117,22 @@ if(isset($_SESSION['user_id'])) {
 </div>
 <!--==============================footer=================================-->
 <footer>
-	<div class="container_12">
-		<div class="grid_12">
-			<div class="f_phone"><span>Call Us:</span> + 1800 559 6580</div>
-			<div class="socials">
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-google-plus"></a>
-			</div>
-			<div class="copy">
-				<div class="st1">
-					<div class="brand">Tour<span class="color1">T</span>axi </div>
-					&copy; 2014	| <a href="#">Privacy Policy</a> </div> Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+    <div class="container_12">
+        <div class="grid_12">
+            <div class="f_phone"><span>Call Us:</span> 7978254858</div>
+            <div class="socials">
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-google-plus"></a>
+            </div>
+            <div class="copy">
+                <div class="st1">
+                    <div class="brand">Co-<span class="color1">P</span>ilot </div>
+                    <a href="#">Privacy Policy</a> </div> Website designed by copilot.com <a href="" rel="nofollow"></a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
 </footer>
 </body>
 </html>

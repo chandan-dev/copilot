@@ -128,11 +128,11 @@ if(empty($_SESSION)) {
 						<div class="maxheight">
 							<div class="banner_title">
 								<img src="images/icon1.png" alt="">
-								<div class="extra_wrapper">Fast&amp;
-									<div class="color1">Secure</div>
+								<div class="extra_wrapper">Cash
+									<div class="color1">Payment</div>
 								</div>
 							</div>
-							 we can reduce traffic congestion to make the ride faster & also provides safety measures to all passengers. 
+							 We are providing option to accept cash payment on arrival to the destination.
 							<a href="#" class="fa fa-share-square"></a>
 						</div>
 					</div>
@@ -196,24 +196,24 @@ if(empty($_SESSION)) {
 			</div>
 		</div>
 <!--==============================footer=================================-->
-		<footer>
-			<div class="container_12">
-				<div class="grid_12">
-					
-					<div class="socials">
-						<a href="#" class="fa fa-twitter"></a>
-						<a href="#" class="fa fa-facebook"></a>
-						<a href="#" class="fa fa-google-plus"></a>
-					</div>
-					<div class="copy">
-						<div class="st1">
-						<div class="brand">Co-<span class="color1">P</span>ilot </div>
-							<a href="#">Privacy Policy</a> </div><a> Website designed by copilot.com</a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-		</footer>
+        <footer>
+            <div class="container_12">
+                <div class="grid_12">
+                    <div class="f_phone"><span>Call Us:</span> 7978254858</div>
+                    <div class="socials">
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-google-plus"></a>
+                    </div>
+                    <div class="copy">
+                        <div class="st1">
+                            <div class="brand">Co-<span class="color1">P</span>ilot </div>
+                            <a href="#">Privacy Policy</a> </div> Website designed by copilot.com <a href="" rel="nofollow"></a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </footer>
 
         <script>
             $(function (){
