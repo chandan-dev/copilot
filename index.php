@@ -1,3 +1,12 @@
+<?php
+
+// if the session not yet started
+if(empty($_SESSION)) {
+	session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +15,6 @@
 		<meta name = "format-detection" content = "telephone=no" />
 		<link rel="icon" href="images/favicon.ico">
 		<link rel="shortcut icon" href="images/favicon.ico" />
-		<link rel="stylesheet" href="booking/css/booking.css">
 		<link rel="stylesheet" href="css/camera.css">
 		<link rel="stylesheet" href="css/owl.carousel.css">
 		<link rel="stylesheet" href="css/style.css">
@@ -23,22 +31,6 @@
 		<!--[if (gt IE 9)|!(IE)]><!-->
 		<script src="js/jquery.mobile.customized.min.js"></script>
 		<!--<![endif]-->
-		<script src="booking/js/booking.js"></script>
-		<script>
-			$(document).ready(function(){
-				jQuery('#camera_wrap').camera({
-					loader: false,
-					pagination: false ,
-					minHeight: '444',
-					thumbnails: false,
-					height: '28.28125%',
-					caption: true,
-					navigation: true,
-					fx: 'mosaic'
-				});
-				$().UItoTop({ easingType: 'easeOutQuart' });
-			});
-		</script>
 		<!--[if lt IE 8]>
 			<div style=' clear: both; text-align:center; position: relative;'>
 				<a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -60,13 +52,28 @@
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li class="current"><a href="">Home</a></li>
+									<li class="current"><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
-									<li><a href="cars.php">Cars</a></li>
-									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
-									<li><a href="login.php">Sign In</a></li>
-									<li><a href="register.php">Register</a></li>
+                                    <?php
+
+                                    if(isset($_SESSION['user_id'])) {
+                                        if ($_SESSION['user_type'] == 1) {
+                                            echo '<li><a href="book-a-ride.php">Book A Ride</a></li>';
+                                        } else {
+                                            echo '<li><a href="profile.php">Profile</a></li>';
+                                        }
+                                        echo '<li><a href="logout.php">Logout</a></li>';
+                                    } else {
+                                        ?>
+
+                                        <li><a href="login.php">Login</a></li>
+                                        <li><a href="regstn.php">Register</a></li>
+
+                                        <?php
+                                    }
+
+                                    ?>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -78,18 +85,19 @@
 					<div class="grid_12">
 						<h1>
 							<a href="">
-								<img src="images/logo.png" alt="Your Happy Family">
+								<img src="images/logo.png" alt="Your Happy Family" class="responsive"
+									style="width: 100%; height: auto;">
 							</a>
 						</h1>
 					</div>
 				</div>
 				<div class="clear"></div>
 			</header>
-			<div class="slider_wrapper ">
+			<div class="slider_wrapper">
 				<div id="camera_wrap" class="">
-					<div data-src="images/slide.jpg" ></div>
-					<div data-src="images/slide1.jpg" ></div>
+					<div data-src="images/slide1.jpg"></div>
 					<div data-src="images/slide2.jpg"></div>
+					<div data-src="images/slide3.jpg"></div>
 				</div>
 			</div>
 			<div class="container_12">
@@ -99,10 +107,10 @@
 							<div class="banner_title">
 								<img src="images/icon1.png" alt="">
 								<div class="extra_wrapper">Fast&amp;
-									<div class="color1">Safe</div>
+									<div class="color1">Secure</div>
 								</div>
 							</div>
-							Dorem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuad
+							 we can reduce traffic congestion to make the ride faster & also provides safety measures to all passengers. 
 							<a href="#" class="fa fa-share-square"></a>
 						</div>
 					</div>
@@ -116,7 +124,7 @@
 									<div class="color1">Prices</div>
 								</div>
 							</div>
-							Hem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuader
+							 We provide sharable mode so that maximum passenger can travel with affordable cost.
 							<a href="#" class="fa fa-share-square"></a>
 						</div>
 					</div>
@@ -126,11 +134,11 @@
 						<div class="maxheight">
 							<div class="banner_title">
 								<img src="images/icon3.png" alt="">
-								<div class="extra_wrapper">Package
-									<div class="color1">Delivery</div>
+							  <div class="extra_wrapper">Emergncy
+									<div class="color1">Service</div>
 								</div>
 							</div>
-							Kurem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuki
+							In any emergency we can make contact with police station ,hospital & guardians
 							<a href="#" class="fa fa-share-square"></a>
 						</div>
 					</div>
@@ -140,17 +148,17 @@
 			<div class="c_phone">
 				<div class="container_12">
 					<div class="grid_12">
-						<div class="fa fa-phone"></div>+ 1800 559 6580
-						<span>ORDER NOW!</span>
+						<div class="fa fa-phone"></div>7978254858
+						<span>BOOK NOW!</span>
 					</div>
 					<div class="clear"></div>
 				</div>
 			</div>
 <!--==============================Content=================================-->
-			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 07, 2014!</div>
+			<div class="content"><div class="ic"></div>
 				<div class="container_12">
 					<div class="grid_5">
-						<h3>Booking Form</h3>
+						<h3>Ride Now</h3>
 						<form id="bookingForm">
 							<div class="fl1">
 								<div class="tmInput">
@@ -187,6 +195,8 @@
 								<span>Standart</span>
 								<input name="Comfort" type="radio" id="tmRadio2" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' />
 								<span>Lux</span>
+								<input name="Comfort" type="radio" id="tmRadio3" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' />
+								<span>Bus</span>
 							</div>
 							<div class="clear"></div>
 							<div class="fl1 fl2">
@@ -219,6 +229,7 @@
 						<a href="cars.php" class="type"><img src="images/page1_img1.jpg" alt=""><span class="type_caption">Economy</span></a>
 						<a href="cars.php" class="type"><img src="images/page1_img2.jpg" alt=""><span class="type_caption">Standard</span></a>
 						<a href="cars.php" class="type"><img src="images/page1_img3.jpg" alt=""><span class="type_caption">Lux</span></a>
+						<a href="cars.php" class="type"><img src="images/page1_img4.jpg" alt=""><span class="type_caption">Bus</span></a>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -228,7 +239,7 @@
 		<footer>
 			<div class="container_12">
 				<div class="grid_12">
-					<div class="f_phone"><span>Call Us:</span> + 1800 559 6580</div>
+					
 					<div class="socials">
 						<a href="#" class="fa fa-twitter"></a>
 						<a href="#" class="fa fa-facebook"></a>
@@ -236,22 +247,12 @@
 					</div>
 					<div class="copy">
 						<div class="st1">
-						<div class="brand">Tour<span class="color1">T</span>axi </div>
-						&copy; 2014	| <a href="#">Privacy Policy</a> </div> Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+						<div class="brand">Co-<span class="color1">P</span>ilot </div>
+							<a href="#">Privacy Policy</a> </div><a> Website designed by copilot.com</a>
 					</div>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</footer>
-		<script>
-			$(function (){
-				$('#bookingForm').bookingForm({
-					ownerEmail: '#'
-				});
-			})
-			$(function() {
-				$('#bookingForm input, #bookingForm textarea').placeholder();
-			});
-		</script>
 	</body>
 </html>

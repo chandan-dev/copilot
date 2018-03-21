@@ -1,6 +1,7 @@
 <?php
 
-include('db.php');
+$successMsg = '';
+$successClass = '';
 
 // if the session not yet started
 if(empty($_SESSION)) {
@@ -14,8 +15,7 @@ if(isset($_SESSION['user_id'])) {
 }
 
 if (!empty($_POST)) {
-    $successMsg = '';
-    $successClass = '';
+	include('db.php');
 
 	$firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];
@@ -86,10 +86,8 @@ if (!empty($_POST)) {
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li><a href="">Home</a></li>
+									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
-									<li><a href="cars.php">Cars</a></li>
-									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
 									<li><a href="login.php">Sign In</a></li>
 									<li class="current"><a href="register.php">Register</a></li>

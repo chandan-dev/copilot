@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "mindfire";
 $dbname = "copilot";
 
 // Create connection

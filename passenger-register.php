@@ -1,5 +1,8 @@
 <?php
 
+$successMsg = '';
+$successClass = '';
+
 include('db.php');
 
 // if the session not yet started
@@ -14,9 +17,6 @@ if(isset($_SESSION['user_id'])) {
 }
 
 if (!empty($_POST)) {
-    $successMsg = '';
-    $successClass = '';
-
     $firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];
     $email = $_POST['email'];
@@ -86,10 +86,8 @@ if (!empty($_POST)) {
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li><a href="">Home</a></li>
+									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
-									<li><a href="cars.php">Cars</a></li>
-									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
 									<li><a href="login.php">Sign In</a></li>
 									<li class="current"><a href="register.php">Register</a></li>
@@ -116,40 +114,44 @@ if (!empty($_POST)) {
 				<div class="container_12">
 					<h3>Passenger Sign Up</h3>
 
-					<form id="register-form" class="login-form form">
+					<form id="register_form" class="login-form form  <?php echo $successClass; ?>" method="post" src="passenger-register.php">
 						<div class="success_wrapper">
-							<div class="success-message">Contact form submitted</div>
+							<div class="success-message"><?php echo $successMsg; ?></div>
 						</div>
 						<label class="firstname">
-							<input type="text" placeholder="First Name:" data-constraints="@Required" />
+							<input type="text" placeholder="First Name:" data-constraints="@Required" name="firstname"/>
 							<span class="empty-message">*This field is required.</span>
 						</label>
 						<label class="lastname">
-							<input type="text" placeholder="Last Name:" data-constraints="@Required" />
+							<input type="text" placeholder="Last Name:" data-constraints="@Required" name="lastname" />
 							<span class="empty-message">*This field is required.</span>
 						</label>
 						<label class="email">
-							<input type="text" placeholder="E-mail:" data-constraints="@Required" />
+							<input type="text" placeholder="E-mail:" data-constraints="@Required" name="email" />
 							<span class="empty-message">*This field is required.</span>
 						</label>
 						<label class="phone">
-							<input type="text" placeholder="Phone Number:" data-constraints="@Required" />
+							<input type="text" placeholder="Phone Number:" data-constraints="@Required" name="phone" />
 							<span class="empty-message">*This field is required.</span>
 						</label>
-                        <label class="city">
-                            <input type="text" placeholder="City:" data-constraints="@Required" />
-                            <span class="empty-message">*This field is required.</span>
-                        </label>
+						<label class="city">
+							<input type="text" placeholder="City:" data-constraints="@Required" name="city" />
+							<span class="empty-message">*This field is required.</span>
+						</label>
 						<label class="password">
-							<input type="password" placeholder="Password:" data-constraints="@Required @Length(min=8,max=20)"/>
+							<input type="password" placeholder="Password:" data-constraints="@Required @Length(min=8,max=20)" name="password"/>
+							<span class="empty-message">*This field is required.</span>
+							<span class="error-message">*This is not a valid password.</span>
+						</label>
+						<label class="password">
+							<input type="password" placeholder="Retype Password:" data-constraints="@Required @Length(min=8,max=20)" name="retype-password"/>
 							<span class="empty-message">*This field is required.</span>
 							<span class="error-message">*This is not a valid password.</span>
 						</label>
 						<div>
 							<div class="clear"></div>
 							<div class="btns">
-								<a href="#" data-type="reset" class="btn">Clear</a>
-								<a href="#" data-type="submit" class="btn">Register</a>
+								<input type="submit" data-type="submit" class="btn" value="Register">
 							</div>
 						</div>
 					</form>

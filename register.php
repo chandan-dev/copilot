@@ -1,3 +1,22 @@
+<?php
+
+// if the session not yet started
+if(empty($_SESSION)) {
+	session_start();
+}
+
+// if the user already logged in
+if(isset($_SESSION['user_id'])) {
+	if ($_SESSION['user_type'] == 1) {
+		header('Location: book-a-ride.php');
+	} else {
+		header('Location: profile.php');
+	}
+	exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +62,8 @@
 				<div class="grid_12">
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
-							<li><a href="">Home</a></li>
+							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
-							<li><a href="cars.php">Cars</a></li>
-							<li><a href="services.php">Services</a></li>
 							<li><a href="contact.php">Contacts</a></li>
 							<li><a href="login.php">Sign In</a></li>
 							<li class="current"><a href="register.php">Register</a></li>

@@ -1,3 +1,59 @@
+<?php
+
+$result = []; $source = ''; $destination = '';
+if (isset($_POST) && !empty($_POST)) {
+    include "client/Uber.php";
+    include "uber-credential.php";
+
+    $source = $_POST['start'];
+    $destination = $_POST['end'];
+
+    $sourceLatLong = getLatLong($source);
+    $sourceLatitude = $sourceLatLong['latitude'];
+    $sourceLongitude = $sourceLatLong['longitude'];
+
+    $destLatLong = getLatLong($destination);
+    $destLatitude = $destLatLong['latitude'];
+    $destLongitude = $destLatLong['longitude'];
+
+    function getLatLong($address) {
+        if(!empty($address)) {
+            //Formatted address
+            $formattedAddr = str_replace(' ','+',$address);
+            //Send request and receive json data by address
+            $geocodeFromAddr = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddr.'&sensor=false');
+            $output = json_decode($geocodeFromAddr);
+            //Get latitude and longitute from json data
+            $data['latitude']  = $output->results[0]->geometry->location->lat;
+            $data['longitude'] = $output->results[0]->geometry->location->lng;
+            //Return latitude and longitude of the given address
+            if(!empty($data)) {
+                return $data;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    $uber = new Uber();
+
+    $uber->setClientId($client_id);
+    $uber->setClientSecret($client_secret);
+    $uber->setRedirectUri($redirect_uri);
+    $uber->setScope('privileged');
+    $uber->setAccessToken($accessToken);
+
+    $products = $uber->request('products', $uber->getAccessToken(),
+        [
+            'latitude' => $sourceLatitude,
+            'longitude' => $sourceLongitude
+        ]);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -33,6 +89,13 @@
 			<script src="js/html5shiv.js"></script>
 			<link rel="stylesheet" media="screen" href="css/ie.css">
 		<![endif]-->
+
+        <style>
+            #map {
+                height: 400px;
+                width: 700px;
+            }
+        </style>
 	</head>
 	<body class="" id="top">
 		<div class="main">
@@ -43,10 +106,8 @@
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li><a href="">Home</a></li>
+									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
-									<li><a href="cars.php">Cars</a></li>
-									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
 									<li class="current"><a href="book-a-ride.php">Book A Ride</a></li>
 									<li><a href="logout.php">Logout</a></li>
@@ -70,34 +131,40 @@
 			</header>
 <!--==============================Content=================================-->
 			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 07, 2014!</div>
-				<div class="container_12">
-					<h3>Driver Sign In</h3>
+                <div class="container_12">
+                    <div class="grid_5">
+                        <h3>Ride Now</h3>
+                        <form id="bookingForm" class="form login-form" method="post"
+                            action="book-a-ride.php">
+                            <div class="fl1">
+                                <div class="tmInput">
+                                    <input name="start" placeHolder="From:" type="text"
+                                           id="start" data-constraints="@NotEmpty @Required"
+                                           onFocus="geolocate()" onkeyup="initAutocomplete('start');"
+                                        value="<?php echo $source; ?>">
+                                </div>
+                            </div>
+                            <div class="fl1">
+                                <div class="tmInput mr0">
+                                    <input name="end" placeHolder="To:" type="text"
+                                           id="end" data-constraints="@NotEmpty @Required"
+                                           onFocus="geolocate()" onkeyup="initAutocomplete('end');"
+                                        value="<?php echo $destination; ?>">
+                                </div>
+                            </div>
 
-					<form id="form" class="login-form">
-						<div class="success_wrapper">
-							<div class="success-message">Contact form submitted</div>
-						</div>
-						<label class="email">
-							<input type="text" placeholder="E-mail or Mobile Number:" data-constraints="@Required" />
-							<span class="empty-message">*This field is required.</span>
-							<span class="error-message">*This is not a valid email or mobile number.</span>
-						</label>
-						<label class="password">
-							<input type="password" placeholder="Password:" data-constraints="@Required @Length(min=8,max=20)"/>
-							<span class="empty-message">*This field is required.</span>
-							<span class="error-message">*This is not a valid password.</span>
-						</label>
-						<div>
-							<div class="clear"></div>
-							<div class="btns">
-								<a href="#" data-type="reset" class="btn">Clear</a>
-								<a href="#" data-type="submit" class="btn">Sign In</a>
-							</div>
-						</div>
-					</form>
+                            <div class="btns">
+                                <input type="submit" class="btn" value="Search">
+                            </div>
+                            <div class="clear"></div>
+                        </form>
+                    </div>
 
-					<div class="clear"></div>
-				</div>
+                    <div class="grid_5">
+                        <div id="map"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
 			</div>
 		</div>
 <!--==============================footer=================================-->
@@ -118,6 +185,12 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-		</footer>
+
+            <script src="js/map-api.js"></script>
+
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkoobqlXLVEnbR-Yl-nKah3DjCSz3RE74&&libraries=places&callback=initMap">
+            </script>
+        </footer>
 	</body>
 </html>

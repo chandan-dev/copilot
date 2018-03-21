@@ -1,3 +1,12 @@
+<?php
+
+// if the session not yet started
+if(empty($_SESSION)) {
+	session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -41,13 +50,29 @@
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li><a href="">Home</a></li>
+									<li><a href="index.php">Home</a></li>
 									<li class="current"><a href="about.php">About</a></li>
-									<li><a href="cars.php">Cars</a></li>
-									<li><a href="services.php">Services</a></li>
 									<li><a href="contact.php">Contacts</a></li>
-									<li><a href="login.php">Sign In</a></li>
-									<li><a href="register.php">Register</a></li>
+
+                                    <?php
+
+                                    if(isset($_SESSION['user_id'])) {
+                                        if ($_SESSION['user_type'] == 1) {
+                                            echo '<li><a href="book-a-ride.php">Book A Ride</a></li>';
+                                        } else {
+                                            echo '<li><a href="profile.php">Profile</a></li>';
+                                        }
+                                        echo '<li><a href="logout.php">Logout</a></li>';
+                                    } else {
+                                        ?>
+
+                                        <li><a href="login.php">Login</a></li>
+                                        <li><a href="regstn.php">Register</a></li>
+
+                                        <?php
+                                    }
+
+                                    ?>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -58,8 +83,9 @@
 				<div class="container_12">
 					<div class="grid_12">
 						<h1>
-							<a href="index.html">
-								<img src="images/logo.png" alt="Your Happy Family">
+							<a href="">
+								<img src="images/logo.png" alt="Your Happy Family" class="responsive"
+									 style="width: 100%; height: auto;">
 							</a>
 						</h1>
 					</div>
@@ -67,74 +93,88 @@
 				<div class="clear"></div>
 			</header>
 <!--==============================Content=================================-->
-			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 07, 2014!</div>
+			<div class="content"><div class="ic"> </div>
 				<div class="container_12">
 					<div class="grid_7">
 						<h3>A Few Words About Us</h3>
 						<img src="images/page2_img1.jpg" alt="" class="img_inner fleft">
 						<div class="extra_wrapper">
 							<div class="text1 color2">
-								<a href="#">Lorem ipsum dolor sit amet, consecteturpiscinger elit. </a>
-							</div>
-							<p>Want to know more about the free theme produced by TemplateMonster? Click this <span class="color1"><a href="http://blog.templatemonster.com/free-website-templates/" rel="dofollow">link</a></span>.</p>
-							One theme is not enough for you to make a choice? Browse the vast variety of <span class="color1"><a href="http://www.templatemonster.com/properties/topic/society-people/" rel="nofollow">car templates</a></span> at TemplateMonster’s website.
+								<a href="#"> </a>
+							</div> 
 						</div>
 						<div class="clear cl1"></div>
-						<p>Cras er te facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuad nibh odio ut veliter loki molo. Vivamus at magna non nunc tristique rhoncus. Aliquam nibh ante, egestas id dictum atermolok commodo luctus erito libero.</p>
-						Praesent faucibus malesuada faucibus. Donec laoreet metus id laoreet malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur orci sed nulla facilisis consequatertolomon.
-						Curabitur vel lorem sit amet nulla ullamcorper fermentum.
+						<p>Co-pilot is Founded in 2018 by four friens Chandan ku.Palei,Ashok Behera,Deepak ku.jena and Nisith Chakrabarty, It is one of the world’s largest ride-sharing companies. CoPilot integrates city transportation for customers and driver-partners onto a mobile technology platform ensuring convenient, transparent, and quick service fulfilment. It is  focused on leveraging the best of technology and building innovative solutions ground-up, that are relevant at global scale.
+						<br><br>We provide cab service  with different features i.e in shareable and non shareable mode and also provide the public bus ticketing system,tourist bus booking service etc.This app provides very good tracking system to all the vehicles and provides good safety measures to all the pasengers.
+						<br><br>
+						                 We will believe in the passengers satisfaction."Ride with us & enjoy with us."
 					</div>
 					<div class="grid_4 prefix_1">
 						<h3>Why Choose Us</h3>
 						<ul class="list li">
 							<li class="list_count">1</li>
 							<li class="extra_wrapper">
-								<div class="text1 color2"><a href="#">Econsecteturpiscinger elit</a></div>
-								Sit meter ultricies erat rutrum. Cras er te facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuad nibh odio ut
+								<div class="text1 color2"><a href="#">Minimize Traffic Congestion</a></div>
+								 We can reduce traffic congestion by providing shareable mode of vehicle during transportation.
 							</li>
-						</ul>
+						</ul>						 
 						<ul class="list li">
 							<li class="list_count">2</li>
 							<li class="extra_wrapper">
-								<div class="text1 color2"><a href="#">Fconsecteturpiscingerelite</a></div>
-								Git meter ultricies erat rutrum. Cras er te facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuad nibh odio
+								<div class="text1 color2"><a href="#">For School Bus  </a></div>
+								 We provides tracking system for school bus 
 							</li>
 						</ul>
 						<ul class="list li">
 							<li class="list_count">3</li>
 							<li class="extra_wrapper">
-								<div class="text1 color2"><a href="#">Hconsecteturpiscingeliter</a></div>
-								Hit meter ultricies erat rutrum. Cras er te facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuad nibut velit.
+								<div class="text1 color2"><a href="#">For private or public Bus  </a></div>
+							   We provide booking system for passengers in private or public bus
 							</li>
 						</ul>
 						<ul class="list li">
 							<li class="list_count">4</li>
 							<li class="extra_wrapper">
-								<div class="text1 color2"><a href="#">Mconsecteturpiscinr elitwert</a></div>
-								Kit meter ultricies erat rutrum. Cras er te facilisis, nulla vel viver auctor, leo magna sodales felis, quis malesuabh odio uter
+								<div class="text1 color2"><a href="#"> Finding Shortest Route</a></div>
+								 By the help of google map, Here  first we have to fix Source and Destination so that, google map can find the shortest path among several paths.
+
+							</li>
+						</ul>
+						<ul class="list li">
+							<li class="list_count">5</li>
+							<li class="extra_wrapper">
+								<div class="text1 color2"><a href="#"> Safety measures for passengers</a></div>
+								  We provide best safety measures for women ,student as well as for all passengers.
+							</li>
+						</ul>
+						<ul class="list li">
+							<li class="list_count">6</li>
+							<li class="extra_wrapper">
+								<div class="text1 color2"><a href="#">Emergency Service </a></div>
+								 In  any emergency we can make  contact  with police station, hospital and parents / guardian.
 							</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_12">
-						<h3 class="h3__ind1">Testimonials</h3>
+						<h3 class="h3__ind1">The duo behind Co-Pilot</h3>
 					</div>
 					<div class="grid_4">
 						<blockquote class="bq1">
-							<p><i>Lorem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magna... </i></p>
-							<div class="color2">Tim Barkley</div>
+							<p><i> Nisith joiend in the group and handeled the back-end developement . </i></p>
+							<div class="color2">Nisith Chakrabarty</div>
 						</blockquote>
 					</div>
 					<div class="grid_4">
 						<blockquote class="bq1">
-							<p><i>Dorem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctor, leo magwe... </i></p>
-							<div class="color2">Linda Grey</div>
+							<p><i> Ashok is a student Of IMIT,cuttack .He started developing Co-Pilot with his three friends in 2018 </i></p>
+							<div class="color2">Ashok Behera</div>
 						</blockquote>
 					</div>
 					<div class="grid_4">
 						<blockquote class="bq1">
-							<p><i>Gorem ipsum dolor sit amet, consectetur adipiscinger elit. In mollis erat mattis neque facilisis, sit ameter ultricies erat rutrum. Cras facilisis, nulla vel viver auctoro magndales...</i></p>
-							<div class="color2">Ann Pool</div>
+							<p><i> Chandan & Deepak are the student of IMIT,cuttack.They joined with Ashok and startd developing with him.</i></p>
+							<div class="color2">Chandan Palei & Deepak Jena</div>
 						</blockquote>
 					</div>
 					<div class="clear"></div>
@@ -145,7 +185,7 @@
 		<footer>
 			<div class="container_12">
 				<div class="grid_12">
-					<div class="f_phone"><span>Call Us:</span> + 1800 559 6580</div>
+					<div class="f_phone"><span>Call Us:</span> 7978254858</div>
 					<div class="socials">
 						<a href="#" class="fa fa-twitter"></a>
 						<a href="#" class="fa fa-facebook"></a>
@@ -153,8 +193,8 @@
 					</div>
 					<div class="copy">
 						<div class="st1">
-						<div class="brand">Tour<span class="color1">T</span>axi </div>
-						&copy; 2014	| <a href="#">Privacy Policy</a> </div> Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+						<div class="brand">Co-<span class="color1">P</span>ilot </div>
+					 <a href="#">Privacy Policy</a> </div> Website designed by copilot.com <a href="" rel="nofollow"></a>
 					</div>
 				</div>
 				<div class="clear"></div>

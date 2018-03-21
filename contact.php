@@ -1,3 +1,12 @@
+<?php
+
+// if the session not yet started
+if(empty($_SESSION)) {
+	session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -43,13 +52,28 @@
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li><a href="">Home</a></li>
+									<li><a href="index.php">Home</a></li>
 									<li><a href="about.php">About</a></li>
-									<li><a href="cars.php">Cars</a></li>
-									<li><a href="services.php">Services</a></li>
 									<li class="current"><a href="contact.php">Contacts</a></li>
-									<li><a href="login.php">Sign In</a></li>
-									<li><a href="register.php">Register</a></li>
+									<?php
+
+									if(isset($_SESSION['user_id'])) {
+										if ($_SESSION['user_type'] == 1) {
+											echo '<li><a href="book-a-ride.php">Book A Ride</a></li>';
+										} else {
+											echo '<li><a href="profile.php">Profile</a></li>';
+										}
+										echo '<li><a href="logout.php">Logout</a></li>';
+									} else {
+										?>
+
+										<li><a href="login.php">Login</a></li>
+										<li><a href="regstn.php">Register</a></li>
+
+										<?php
+									}
+
+									?>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -60,8 +84,9 @@
 				<div class="container_12">
 					<div class="grid_12">
 						<h1>
-							<a href="index.html">
-								<img src="images/logo.png" alt="Your Happy Family">
+							<a href="">
+								<img src="images/logo.png" alt="Your Happy Family" class="responsive"
+									 style="width: 100%; height: auto;">
 							</a>
 						</h1>
 					</div>
@@ -69,31 +94,35 @@
 				<div class="clear"></div>
 			</header>
 <!--==============================Content=================================-->
-			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 07, 2014!</div>
+			<div class="content"><div class="ic"> </div>
 				<div class="container_12">
 					<div class="grid_12">
 						<h3>Find Us</h3>
 						<div class="map">
 							<figure>
-								<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24214.807650104907!2d-73.94846048422478!3d40.65521573400813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1395650655094" style="border:0"></iframe>
+								 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3737.753058024706!2d85.89343381449396!3d20.4753332863008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19128185faaba9%3A0x11073d3baae0217!2sIMIT!5e0!3m2!1sen!2sin!4v1521268001871" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 							</figure>
 						</div>
 					</div>
 					<div class="grid_5">
 						<h3>Contact Info</h3>
 						<div class="map">
-							<div class="text1 color2">Lorem ipsum dolor sit amet, consecteturpiscinger elit um dolor sit amet, consecteturpiscing.</div>
-							<p>Don’t forget, 24/7 support is available for TemplateMonster’s <span class="color1"><a href="http://www.templatemonster.com/website-templates.php" rel="nofollow">premium themes</a></span> only. Free ones lack this privilege.</p>
-							<p>Use <span class="color1"><a href="http://www.templatetuning.com/" rel="nofollow">Template Tuning</a></span> services if you need any help in customization of your freebie.</p>
+							<div class="text1 color2">Co-Pilot also provides individual contact numbers for its customers with the help of which customers can contact from anywhere. Customers can find the contact numbers from the website of this company easily and dial to this company to book the cab anytime.
+<br><br>Co-Pilot Customer Care Details: <br>
+                  This company also provides customer care numbers for its customer care numbers using which they can call and solve their problems easily. The support team of this company work all the time and provide solutions for the customers.
+
+ </div>
+							<p>Don’t forget, 24/7 support is available for passanger support <span class="color1"><a href="" rel="nofollow"></a></span></p>
+							<p>TOLL-FREE: 1800156256<span class="color1"><a href="" rel="nofollow"></a></span></p>
 							<address>
 								<dl>
-									<dt>The Company Name Inc. <br>
-										9870 St Vincent Place,<br>
-										Glasgow, DC 45 Fr 45.
+									<dt>The Company Name Co-pilot pvt.ltd <br>
+										 Cuttack,Odisha,753001<br>
+										 1st floor IMIT,cuttack
 									</dt>
-									<dd><span>Telephone:</span> +1 800 603 6035</dd>
-									<dd><span>FAX:</span> +1 800 889 9898</dd>
-									<dd>E-mail: <a href="#" class="color1">mail@demolink.org</a></dd>
+									<dd><span>Mobile No.</span>7978254858 , 8658231166,7978615741 , 8249744031</dd>
+									<dd><span>FAX:</span>+ 9692116658</dd>
+									<dd>E-mail: support@copilot.com<a href="#" class="color1"> </a></dd>
 								</dl>
 							</address>
 						</div>
@@ -141,7 +170,7 @@
 		<footer>
 			<div class="container_12">
 				<div class="grid_12">
-					<div class="f_phone"><span>Call Us:</span> + 1800 559 6580</div>
+					<div class="f_phone"><span>Call Us:</span>7978254858</div>
 					<div class="socials">
 						<a href="#" class="fa fa-twitter"></a>
 						<a href="#" class="fa fa-facebook"></a>
@@ -149,8 +178,8 @@
 					</div>
 					<div class="copy">
 						<div class="st1">
-						<div class="brand">Tour<span class="color1">T</span>axi </div>
-						&copy; 2014	| <a href="#">Privacy Policy</a> </div> Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+						<div class="brand">Co-<span class="color1">P</span>ilot </div>
+						<a href="#">Privacy Policy</a> </div> Website designed by copilot.com<a href="" rel="nofollow"></a>
 					</div>
 				</div>
 				<div class="clear"></div>
